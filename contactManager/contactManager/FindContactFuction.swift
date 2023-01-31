@@ -1,16 +1,9 @@
 func findContact(inputName : String){
-    var correctCount : Int = 0
-    for contact in contacts {
-        guard contact.name == inputName else {
-            continue
-        }
-        correctCount += 1
-        print(contact.description)
+    var filteredContacts = contacts.filter { Contact in Contact.name == inputName }
+    if  filteredContacts.count > 0 {
+        filteredContacts.forEach { print($0.description) }
+    } else {
+        print("연락처에 \(inputName) 이(가) 없습니다.\n")
     }
-    guard correctCount == 0 else{
-        print("")
-        return
-    }
-    print("연락처에 \(inputName) 이(가) 없습니다.\n")
 }
 

@@ -17,15 +17,20 @@ func addContact(){
         
         let seperatedInput = input.components(separatedBy:"/")
         
-        let trimName = seperatedInput[0].trimmingCharacters(in: [" "])
-        let trimAge = seperatedInput[1].trimmingCharacters(in: [" "])
-        let trimNum = seperatedInput[2].trimmingCharacters(in: [" "])
+        let trimSet = seperatedInput.map {
+            $0.trimmingCharacters(in: [" "])
+        }
+        
+        let trimName = trimSet[0]
+        let trimAge = trimSet[1]
+        let trimNum = trimSet[2]
         
         let zeroBlankName = trimName.components(separatedBy: [" "]).joined()
         
         guard errorCheck(trimName: trimName, trimAge: trimAge, trimNum: trimNum) else {
             continue
         }
+        
         isAddContactError = true
         print("입력한 정보는 \(trimAge)세 \(zeroBlankName)(\(trimNum))입니다.\n")
         
